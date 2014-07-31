@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="sandbox">
+  <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <h1>{{'Hello' + ' World!'}}</h1>
+
+    <br>
+    <br>
+
+    <div ng-controller="sandboxController as sandbox">
+<!--       <div ng-show="sandbox.museums.isFree">
+        <h1>{{ sandbox.museums[0].name }}</h1>
+        <h2>{{ sandbox.museums[0].location }}</h2>
+        <button ng-show="sandbox.museums.offersTours">Sign Up for a Tour</button>
+      </div> -->
+
+    <div class="museum-box" ng-repeat="museum in sandbox.museums | orderBy:'-entryFee' | limitTo:4 ">
+        <h3>{{ museum.name }}</h3>
+        <p>{{ museum.location}}</p>
+        <p>{{ museum.entryFee | currency }}</p>
+        <img ng-src="{{ museum.images[0].full }}"/>
+
+      <div class="gallery" ng-show="museum.images.length">
+        <ul class="img-thumbnails">
+          <li ng-repeat="image in museum.images">
+            <img ng-src="{{ image.thumb }}" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <p>With logic in html:</p>
+      <section ng-init="tab = 1">
+        <ul class="nav nav-pills">
+          <li ng-class="{ active: tab === 1 }"><a href="" ng-click="tab=1">Tab One</a></li>
+          <li ng-class="{ active: tab === 2 }"><a href="" ng-click="tab=2">Tab Two</a></li>
+          <li ng-class="{ active: tab === 3 }"><a href="" ng-click="tab=3">Tab Three</a></li>
+          <li ng-class="{ active: tab === 4 }"><a href="" ng-click="tab=4">Tab Four</a></li>
+        </ul>
+        {{tab}}
+
+        <div class="panel" ng-show="tab === 1">
+          <p>This is the text for tab one.</p>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+          <p>This is the text for tab two.</p>
+        </div>
+        <div class="panel" ng-show="tab === 3">
+          <p>This is the text for tab three.</p>
+        </div>
+        <div class="panel" ng-show="tab === 4">
+          <p>This is the text for tab four.</p>
+        </div>
+      </section>
+
+    <p>With logic in a controller:</p>
+      <section ng-controller="panelController as panel">
+        <ul class="nav nav-pills">
+          <li ng-class="{ active: panel.isSelected(1) }"><a href="" ng-click="panel.selectTab(1)">Tab One</a></li>
+          <li ng-class="{ active: panel.isSelected(2) }"><a href="" ng-click="panel.selectTab(2)">Tab Two</a></li>
+          <li ng-class="{ active: panel.isSelected(3) }"><a href="" ng-click="panel.selectTab(3)">Tab Three</a></li>
+          <li ng-class="{ active: panel.isSelected(4) }"><a href="" ng-click="panel.selectTab(4)">Tab Four</a></li>
+        </ul>
+        {{tab}}
+
+        <div class="panel" ng-show="panel.isSelected(1)">
+          <p>This is the text for tab one.</p>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(2)">
+          <p>This is the text for tab two.</p>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(3)">
+          <p>This is the text for tab three.</p>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(4)">
+          <p>This is the text for tab four.</p>
+        </div>
+      </section>
+
+
+
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,12 @@
+.museum-box {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.img-thumbnails li {
+  list-style: none;
+  display: inline-block;
+}
