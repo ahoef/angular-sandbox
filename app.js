@@ -167,4 +167,12 @@
         this.review = {};
       };
     });
+
+    app.directive('myPartial', function() {
+      return {
+        restrict: 'AE',
+        templateUrl: '/partials/partial.html'
+      };
+    });
+
 })();
