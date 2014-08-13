@@ -32,6 +32,51 @@
           </li>
         </ul>
       </div>
+
+      <hr>
+      <!--  Product Reviews List -->
+            <ul>
+              <h4>Reviews</h4>
+              <li ng-repeat="review in museum.reviews">
+                  <strong>{{review.stars}} Stars</strong>
+                  {{review.body}}
+                  <cite class="clearfix">by: {{review.author}} on {{review.createdOn | date}}</cite>
+              </li>
+            </ul>
+
+
+      <form name="reviewForm" ng-controller="reviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(museum)" novalidate>
+        <!--Live Preview-->
+        <ul>
+          <li>
+            <strong>{{reviewCtrl.review.stars}} Stars</strong>
+            {{ reviewCtrl.review.body }}
+            <cite>by: {{ reviewCtrl.review.author }} on {{reviewCtrl.review.createdOn | date}}</cite>
+          </li>
+        </ul>
+
+        <hr>
+        <!-- Review -->
+        <h4>Submit a review</h4>
+        <fieldset>
+          <select ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+            <option value="">Rate the museum</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <textarea name="body" ng-model="reviewCtrl.review.body" placeholder="write a review" title="review" required></textarea>
+        </fieldset>
+        <fieldset>
+          <label>by:</label>
+          <input name="author" ng-model="reviewCtrl.review.author" type="email" placeholder="a@b.com" required/>
+        </fieldset>
+        <!-- print form validity, $valid is a built in property of angular -->
+        <div>reviewForm is {{reviewForm.$valid}}</div>
+        <fieldset>
+          <input type="submit" value="Go!" class="btn"/>
+        </fieldset>
+      </form>
     </div>
 
     <br>

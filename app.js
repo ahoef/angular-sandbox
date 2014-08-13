@@ -23,6 +23,20 @@
           full:"http://placekitten.com/300/300",
           thumb:"http://placekitten.com/50/50"
         }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          body: "Best museum ever",
+          author: "joe@example.org",
+          createdOn: 1397490980837
+        },
+        {
+          stars: 1,
+          body: "Got lost.",
+          author: "tim@example.org",
+          createdOn: 1397490980837
+        }
       ]
     },
     {
@@ -42,6 +56,20 @@
           full:"http://placehold.it/300x300",
           thumb:"http://placehold.it/50x50"
         }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          body: "A great museum.",
+          author: "joe@example.org",
+          createdOn: 1397490980837
+        },
+        {
+          stars: 1,
+          body: "A bad museum.",
+          author: "tim@example.org",
+          createdOn: 1397490980837
+        }
       ]
     },
     {
@@ -60,6 +88,20 @@
         {
           full:"http://placekitten.com/300/300",
           thumb:"http://placekitten.com/50/50"
+        }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          body: "A wonderful museum.",
+          author: "joe@example.org",
+          createdOn: 1397490980837
+        },
+        {
+          stars: 1,
+          body: "Too large.",
+          author: "tim@example.org",
+          createdOn: 1397490980837
         }
       ]
     },
@@ -89,17 +131,40 @@
           full:"http://placekitten.com/300/300",
           thumb:"http://placekitten.com/50/50"
         }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          body: "Super.",
+          author: "joe@example.org",
+          createdOn: 1397490980837
+        },
+        {
+          stars: 1,
+          body: "Bad.",
+          author: "tim@example.org",
+          createdOn: 1397490980837
+        }
       ]
     }
   ];
 
-  app.controller('panelController', function() {
-    this.tab = 1;
-    this.selectTab = function(setTab) {
-      this.tab = setTab;
-    };
-    this.isSelected = function(checkTab) {
-      return this.tab === checkTab;
-    };
-  });
+    app.controller('panelController', function() {
+      this.tab = 1;
+      this.selectTab = function(setTab) {
+        this.tab = setTab;
+      };
+      this.isSelected = function(checkTab) {
+        return this.tab === checkTab;
+      };
+    });
+
+    app.controller('reviewController', function() {
+      this.review = {};
+      this.addReview = function(museum) {
+        this.review.createdOn = Date.now();
+        museum.reviews.push(this.review);
+        this.review = {};
+      };
+    });
 })();
